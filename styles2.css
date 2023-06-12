@@ -4,20 +4,20 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image:url(imagenes/software-médico.jpg);
+    background-image:url(imagenes/01.jpg);
 }
 .container{
     width: 80%;
     height: 100vh;
     display: flex;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, .212);
+    box-shadow: 5px 5px 10px rgba(238, 235, 235, 0.986);
 }
 .form-image{
     width: 31rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color:#11040475 ;
+    background-color:#fffefe00 ;
     padding: 1rem;
 }
 .form-image img{
@@ -30,7 +30,7 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: #f0f3f350;
+    background-color: #f0f3f000;
     padding: 3rem;
 }
 .form-header{
@@ -88,7 +88,7 @@ body{
 
 }
 .input-box input:hover{
-    background-color: #eeeeee75;
+    background-color: #fffafa62;
 
 }
 .input-box input:focus-visible{
