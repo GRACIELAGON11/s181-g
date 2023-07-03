@@ -35,7 +35,21 @@ def guardar():
     flash('EL ALBUM FUE AGREGADO EXITOSAMENTE')
     return redirect(url_for('index'))
 
-@app.route('/eliminar')
+@app.route('/editar/<id>')
+def editar(id):
+        CursorId= MySQL.connection.cursor()
+        CursorId. execute(('select * from Albums where id= %s',(id)))
+        consulId= cursorId.fetchall()  
+        return render_template('Editar.html', Album=consulId)
+
+
+@app.route('/actualizar/<id>')
+def eliminar(id):
+    return "Se elimino de la Base de Datos"
+
+
+
+@app.route('/eliminar', methods=['POST'])
 def eliminar():
     return "Se elimino de la Base de Datos"
 
