@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EDITAR ALBUM</title>
+    <title>ELIMINAR ALBUM</title>
 </head>
 <body>
     {%with mensajes=get_flashed_messages()%}
@@ -13,13 +13,14 @@
             {%endfor%}
         {%endif%}
     {%endwith%} 
-    <H1>Album a Editar</H1>
+    <H1>Album a Eliminar</H1>
     <br>
-    <form action="/update/{{Album.0}}" method="POST">
+    <form action="/delete/{{Album.0}}" method="POST">
         <input type="text" name="txtTitulo"" placeholder="Escribe el titulo" value="{{Album.1}}">
         <input type="text" name="txtArtista" placeholder="Escribe el artista" value="{{Album.2}}">
         <input type="number" name="txtAnio" aria-placeholder="Escribe el año" value="{{Album.3}}">
-        <button type="submit">Actualizar</button>
+        <button type="submit">Eliminar</button>
+        <button type="submit" href="index.html">A atras</button>
     </form>
 </body>
 </html>

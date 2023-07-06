@@ -25,7 +25,7 @@ def guardar():
     if request.method == 'POST':
         #pasamos a variables el contenido de los input
         Vtitulo=request.form['txtTitulo']
-        Vartista=request.form['textArtista']
+        Vartista=request.form['txtArtista']
         Vanio=request.form['txtAnio']
     
         #conectar y ejecutar el insert
@@ -37,24 +37,46 @@ def guardar():
 
 @app.route('/editar/<id>')
 def editar(id):
-        CursorId= MySQL.connection.cursor()
-        CursorId. execute(('select * from Albums where id= %s',(id)))
-        consulId= cursorId.fetchall()  
-        return render_template('Editar.html', Album=consulId)
+    CursorId= MySQL.connection.cursor()
+    CursorId.execute('select * from Albums where id= %s',(id,))
+    consulId= CursorId.fetchone()  
+    return render_template('Editar.html', Album=consulId)
 
-
-@app.route('/actualizar/<id>')
+@app.route('/update/<id>', methods=['POST'])
+def update(id):
+   if request.method == 'POST':
+    Vtitulo=request.form['txtTitulo']
+    Vartista=request.form['txtArtista']
+    Vanio=request.form['txtAnio']
+    curAct= MySQL.connection.cursor()
+    curAct.execute('update Albums set titulo= %s,artista= %s, anio= %s  where id= %s',(Vtitulo,Vartista,Vanio,id))
+    MySQL.connection.commit()
+    
+    
+    flash('Se actualizo el Album'+Vtitulo)    
+    return redirect(url_for('index'))
+   
+@app.route('/eliminar/<id>')
 def eliminar(id):
-    return "Se elimino de la Base de Datos"
+    CursorId= MySQL.connection.cursor()
+    CursorId.execute('select * from Albums where id=%s',(id,))
+    consulId= CursorId.fetchone()  
+    return render_template('eliminar.html', Album=consulId)
+
+@app.route('/delete/<id>', methods=['POST'])
+def delete(id):
+   if request.method == 'POST':
+    Vtitulo=request.form['txtTitulo']
 
 
-
-@app.route('/eliminar', methods=['POST'])
-def eliminar():
-    return "Se elimino de la Base de Datos"
-
+    curAct= MySQL.connection.cursor()
+    curAct.execute('delete from Albums where id= %s',(id))
+    MySQL.connection.commit()
+    
+    
+    flash('Se borro el Album'+Vtitulo)    
+    return redirect(url_for('index'))
 
 #ejecucion del servidor y asignacion del puerto a trabajar
 if __name__ == '__main__':
-        app.run(port=5000 ,debug= True)
-
+    app.run(port=5000 ,debug= True)

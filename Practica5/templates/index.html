@@ -19,7 +19,7 @@
     <br>
     <form action="/guardar" method="POST">
         <input type="text" name="txtTitulo" placeholder="Escribe Titulo">
-        <input type="text" name="textArtista" placeholder="Escribe artista">
+        <input type="text" name="txtArtista" placeholder="Escribe artista">
         <input type="number" name="txtAnio" placeholder="Escribe año">
         <button type="submit">GUARDAR</button>
     </form>
@@ -38,16 +38,15 @@
     <tbody>
         {%for alb in listalbums%}
         <tr>
-            <td>{{alb.0}}</td>
-            <td>{{alb.1}}</td>
-            <td>{{alb.2}}</td>
-            <td>{{alb.3}}</td>
+            <td> {{alb.0}} </td>
+            <td> {{alb.1}} </td>
+            <td> {{alb.2}} </td>
+            <td> {{alb.3}} </td>
             <td>
                 <a href=/editar/{{alb.0}}>Editar</a>
-                <a href="#">Borrar</a>
+                <a href=/eliminar/{{alb.0}}>Borrar</a>
             </td>
         </tr>
-
         {%endfor%}
     </tbody>
  </table>
